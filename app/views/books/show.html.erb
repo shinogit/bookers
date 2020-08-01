@@ -1,0 +1,10 @@
+<div class="show">
+  <div class="notice"><p><%= notice %></p></div>
+    <div class="detail">
+      <p><%= "Title: #{@detail.title}" %></p>
+      <p><%= "Body: #{@detail.body}" %></p>
+    </div>
+  <div class="btn"><%= link_to "Edit", edit_book_path(@detail.id) %></div>
+  <div class="btn"><%= link_to "Back", books_path %></div>
+</div>
+

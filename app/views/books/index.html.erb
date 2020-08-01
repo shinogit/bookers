@@ -1,0 +1,46 @@
+<div class="notice"><p><%= notice %></p></div>
+<h2>Books</h2>
+<div class="index">
+  
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+    <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.title %></td>
+      <td><%= list.body %></td> 
+      <div class="btn"><td><%= link_to 'Show', book_path(list.id) %></td></div>
+      <div class="btn"><td><%= link_to 'Edit', edit_book_path(list.id) %></td></div>
+      <div class="btn"><td><%=link_to 'Destroy', book_path(list.id), method: :delete, "data-confirm" => "Are you sure？" %></td></div>
+    </tr>
+    <% end %>
+  </table>
+  
+</div>
+
+
+<div class="post">
+  <h2>New book</h2>
+  <%# <!-- form_for部分 --> %>
+  <%= form_for(@create) do |f| %>
+  <%# ここからエラーメッセージ %>
+  <% if @create.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= pluralize(@create.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+        <% @create.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%# ここまでエラーメッセージ %>
+    <p>Title</p>
+    <%= f.text_field :title %>
+    <p>Body</p>
+    <%= f.text_area :body %><br>
+    <%= f.submit 'Create Book' %>
+    <% end %>
+</div>
