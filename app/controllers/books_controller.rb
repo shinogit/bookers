@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-
+before_action :set_detail, only: [:show, :edit, :update]
   def top
   end
 
@@ -20,15 +20,15 @@ class BooksController < ApplicationController
   end
 
   def show
-    @detail = Book.find(params[:id])
+    # @detail = Book.find(params[:id])
   end
 
   def edit
-    @detail = Book.find(params[:id])
+    # @detail = Book.find(params[:id])
   end
 
   def update
-    @detail = Book.find(params[:id])
+    # @detail = Book.find(params[:id])
     if @detail.update(list_params)
       flash[:notice] = 'Book was successfully updated.'
       redirect_to book_path(@detail.id)
@@ -45,6 +45,11 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def set_detail
+    @detail = Book.find(params[:id])
+  end
+
   # ストロングパラメータ
   def list_params
     params.require(:book).permit(:title, :body)
